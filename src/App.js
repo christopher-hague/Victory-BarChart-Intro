@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory'
 
-const crawlStats = [
-  {episode: 1, count: 78},
-  {episode: 2, count: 81},
-  {episode: 3, count: 75},
-  {episode: 4, count: 83},
-  {episode: 5, count: 81},
-  {episode: 6, count: 78},
-  {episode: 7, count: 92}
-]
-
 const romanNums = ["I", "II", "III", "IV", "V", "VI", "VII"]
 
 class App extends Component {
@@ -54,7 +44,7 @@ class App extends Component {
     }
 
     const crawlLengths = this.makeCrawls().map((crawl, i) =>
-      ({episode: i+ 1, length: crawl.split("\r\n").join(" ").split(" ").length})
+      ({episode: i+ 1, count: crawl.split("\r\n").join(" ").split(" ").length})
     )
 
     return (
@@ -63,7 +53,7 @@ class App extends Component {
           <VictoryAxis tickValues={romanNums} label="Episodes" />
           <VictoryAxis dependentAxis label="Word Count" style={{axisLabel: {padding: 35 } }} />
           <VictoryBar
-            data={crawlStats}
+            data={crawlLengths}
             x="episode"
             y="count"
           />
